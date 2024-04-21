@@ -1,4 +1,4 @@
-package init
+package main
 
 import (
 	"fmt"
@@ -8,8 +8,8 @@ import (
 	"github.com/kidnation-pd/hw02_fix_app/hw02_fix_app/types"
 )
 
-func init() {
-	var path string = "data.json"
+func main() {
+	var path string
 
 	fmt.Printf("Enter data file path: ")
 	fmt.Scanln(&path)
@@ -19,12 +19,12 @@ func init() {
 
 	if len(path) == 0 {
 		path = "data.json"
-	} else {
 	}
 
 	staff, err = reader.ReadJSON(path, -1)
-
-	fmt.Print(err)
+	if err != nil {
+		fmt.Print(err)
+	}
 
 	printer.PrintStaff(staff)
 }
